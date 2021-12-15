@@ -5,11 +5,11 @@
 ![add_order](https://user-images.githubusercontent.com/50598846/146266615-282c6a62-f75e-4068-a0bb-2187c8f0e7e0.png)
 ![add_order](https://user-images.githubusercontent.com/50598846/146266701-b7d71e91-26bf-4656-88e5-67ddead20a07.png)
 
-### 2-List all orders
+### 2-List all orders, orders with status = 0 are uncompleted orders.
 ![list_function](https://user-images.githubusercontent.com/50598846/146271680-f797586a-576e-4991-8bc4-7587dcc3bcc6.png)
 ![list_orders](https://user-images.githubusercontent.com/50598846/146266705-fcb7e6ab-76b1-4c88-8d6b-61bccd0002f8.png)
 
-### 3-Pull and complete incomplete orders from Kafka
+### 3-Pull and complete incomplete orders from Kafka, orders with status = 1 are completed orders.
 ![complete_function](https://user-images.githubusercontent.com/50598846/146271675-335a0056-e90a-4620-9309-bacd522edeb5.png)
 ![complete_orders](https://user-images.githubusercontent.com/50598846/146266709-933e6c2e-4192-456a-bc6a-9a8f1bab3d36.png)
 
