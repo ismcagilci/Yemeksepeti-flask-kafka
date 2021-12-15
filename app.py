@@ -15,6 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
+
 db = SQLAlchemy(app)
 
 
@@ -33,70 +34,79 @@ class Orders(db.Model):
 
 @app.route('/', methods=['GET'])
 def fetch():
-    orders = database.get_all(Orders)
-    all_orders = []
-    for order in orders:
-        new_order = {
-            "id": order.id,
-            "restaurant": order.restaurant,
-            "food": order.food,
-            "category": order.category,
-            "username":order.username,
-            "email":order.email,
-            "status":order.status
-        }
+    try:
+        orders = database.get_all(Orders)
+        all_orders = []
+        for order in orders:
+            new_order = {
+                "id": order.id,
+                "restaurant": order.restaurant,
+                "food": order.food,
+                "category": order.category,
+                "username":order.username,
+                "email":order.email,
+                "status":order.status
+            }
 
-        all_orders.append(new_order)
-    return json.dumps(all_orders), 200
+            all_orders.append(new_order)
+        return json.dumps(all_orders), 200
+    except Exception as e:
+        return json.dumps(str(e)),404
 
 
 @app.route('/add', methods=['POST'])
 def add_order():
-    data = request.get_json()
-    restaurant = data['restaurant']
-    food = data['food']
-    category = data['category']
-    username = data["username"]
-    email = data["email"]
-    status = 0
-    object_id = database.add_instance(Orders,restaurant=restaurant, food=food, category=category, username=username,email=email, status=status,db=db)
-    data["id"] = object_id
-    send_kafka(data)
-    return json.dumps("Added"), 200
+    try:
+        data = request.get_json()
+        print(data)
+        restaurant = data['restaurant']
+        food = data['food']
+        category = data['category']
+        username = data["username"]
+        email = data["email"]
+        status = 0
+        object_id = database.add_instance(Orders,restaurant=restaurant, food=food, category=category, username=username,email=email, status=status,db=db)
+        data["id"] = object_id
+        send_kafka(data)
+        return json.dumps("Added"), 200
+    except Exception as e:
+        return json.dumps(str(e)),404
 
 
 @app.route('/complete', methods=['GET'])
 def complete_order():
-    get_orders = get_consumer()
-    for order in get_orders:
-        try:
-            print(order)
-            order = json.loads(order.value)
-            database.edit_instance(Orders, id=order.get("id"), status=1, db=db)
-        except:
-            pass
-    return json.dumps("Order was completed"), 200
+    try:
+        get_orders = get_consumer()
+        for order in get_orders:
+            try:
+                print(order)
+                order = json.loads(order.value)
+                database.edit_instance(Orders, id=order.get("id"), status=1, db=db)
+            except:
+                pass
+        return json.dumps("Order was completed"), 200
+    except Exception as e:
+        return json.dumps(str(e)),404
+
 
 
 @app.route('/remove/<order_id>', methods=['DELETE'])
 def remove(order_id):
-    database.delete_instance(Orders, id=order_id,db=db)
-    return json.dumps("Deleted"), 200
+    try:
+        database.delete_instance(Orders, id=order_id,db=db)
+        return json.dumps("Deleted"), 200
+    except Exception as e:
+        return json.dumps(str(e)),404
+
 
 @app.route('/remove_all', methods=['DELETE'])
 def remove_all():
-    database.delete_all(Orders,db=db)
-    return json.dumps("All deleted"), 200
+    try:
+        database.delete_all(Orders,db=db)
+        return json.dumps("All deleted"), 200
+    except Exception as e:
+        return json.dumps(str(e)),404
 
-
-
-
-@app.route('/edit/<order_id>', methods=['PATCH'])
-def edit(order_id):
-    data = request.get_json()
-    new_food = data['food']
-    database.edit_instance(Orders, id=order_id, food=new_food,db=db)
-    return json.dumps("Edited"), 200
 
 if __name__ == '__main__':
     db.create_all()

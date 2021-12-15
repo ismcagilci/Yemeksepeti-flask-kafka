@@ -5,4 +5,4 @@ host = "localhost"
 database = "yemeksepeti_deneme"
 port = "5432"
 
-DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}'
+DATABASE_CONNECTION_URI = f'postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}?client_encoding=utf8'
