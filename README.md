@@ -7,7 +7,8 @@
 ### 2-List all orders
 ![list_orders](https://user-images.githubusercontent.com/50598846/146266705-fcb7e6ab-76b1-4c88-8d6b-61bccd0002f8.png)
 
-https://user-images.githubusercontent.com/50598846/146266709-933e6c2e-4192-456a-bc6a-9a8f1bab3d36.png
+### 3-Pull and complete incomplete orders from Kafka
+![complete_orders](https://user-images.githubusercontent.com/50598846/146266709-933e6c2e-4192-456a-bc6a-9a8f1bab3d36.png)
 
 https://user-images.githubusercontent.com/50598846/146266713-ae12fe19-a2f9-46ee-a092-bce55afb4177.png
 
