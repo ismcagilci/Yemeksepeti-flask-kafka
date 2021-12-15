@@ -1,9 +1,9 @@
 # Yemeksepeti-flask-kafka
 
 
-![deneme](https://user-images.githubusercontent.com/50598846/146266615-282c6a62-f75e-4068-a0bb-2187c8f0e7e0.png)
+![add_value](https://user-images.githubusercontent.com/50598846/146266615-282c6a62-f75e-4068-a0bb-2187c8f0e7e0.png)
 
-https://user-images.githubusercontent.com/50598846/146266701-b7d71e91-26bf-4656-88e5-67ddead20a07.png
+![add_value](https://user-images.githubusercontent.com/50598846/146266701-b7d71e91-26bf-4656-88e5-67ddead20a07.png)
 
 https://user-images.githubusercontent.com/50598846/146266705-fcb7e6ab-76b1-4c88-8d6b-61bccd0002f8.png
 
